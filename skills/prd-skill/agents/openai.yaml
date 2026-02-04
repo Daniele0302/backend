@@ -1,0 +1,4 @@
+interface:
+  display_name: "PRD Writer"
+  short_description: "Create clear PRDs for new apps"
+  default_prompt: "Create a PRD for the described application."

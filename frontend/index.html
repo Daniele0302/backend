@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HTML to PDF Converter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid"></div>
+    <main class="page">
+      <header class="hero">
+        <div class="badge">HTML → PDF</div>
+        <h1>Converti file HTML in PDF in pochi secondi.</h1>
+        <p>
+          Carica un file <strong>.html</strong> o <strong>.htm</strong> fino a 200 MB e scarica il PDF
+          generato dal backend.
+        </p>
+      </header>
+
+      <section class="card">
+        <form id="convert-form">
+          <label class="file-drop" for="file-input">
+            <div class="file-drop__inner">
+              <span class="file-drop__title">Trascina qui il file HTML</span>
+              <span class="file-drop__subtitle">oppure clicca per selezionarlo</span>
+            </div>
+            <input id="file-input" name="file" type="file" accept=".html,.htm" />
+          </label>
+
+          <div class="meta">
+            <div>
+              <div class="meta__label">File selezionato</div>
+              <div id="file-name" class="meta__value">Nessun file</div>
+            </div>
+            <div>
+              <div class="meta__label">Dimensione</div>
+              <div id="file-size" class="meta__value">-</div>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button id="convert-btn" class="primary" type="submit" disabled>
+              Converti in PDF
+            </button>
+            <button id="reset-btn" class="secondary" type="button">
+              Reset
+            </button>
+          </div>
+        </form>
+
+        <div class="health">
+          <span class="health__label">Backend</span>
+          <span id="health-status" class="health__value">Verifica in corso...</span>
+          <button id="health-btn" class="text-btn" type="button">Riprova</button>
+        </div>
+        <div id="status" class="status" aria-live="polite"></div>
+        <div id="download" class="download" hidden>
+          <div>PDF pronto.</div>
+          <a id="download-link" class="primary" download="output.pdf">Scarica PDF</a>
+        </div>
+      </section>
+
+      <section class="info">
+        <div>
+          <h2>Come funziona</h2>
+          <p>
+            Il frontend invia il file al backend FastAPI all'endpoint <code>/convert</code>. La
+            risposta è un PDF binario che viene salvato sul tuo dispositivo.
+          </p>
+        </div>
+        <div>
+          <h2>Limiti</h2>
+          <ul>
+            <li>Dimensione massima: 200 MB</li>
+            <li>Solo estensioni .html o .htm</li>
+            <li>Nessuna autenticazione</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Backend: <code id="base-url">http://localhost:8000</code></span>
+      <span>File eliminati automaticamente dopo ~2 minuti.</span>
+    </footer>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
